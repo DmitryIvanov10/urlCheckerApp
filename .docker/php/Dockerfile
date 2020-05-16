@@ -11,7 +11,10 @@ RUN apk --update add wget \
 		     php7-phar \
 		     php7-dom --repository http://nl.alpinelinux.org/alpine/edge/testing/ && rm /var/cache/apk/*
 
-# INSTALL COMPOSER
+# add php mysql extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# install composer
 RUN curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/local/bin/ \
         && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
