@@ -1,4 +1,4 @@
-FROM library/php:7.4-fpm-alpine
+FROM library/php:7.4.6-fpm-alpine
 RUN apk --update add wget \
 		     curl \
 		     git \
