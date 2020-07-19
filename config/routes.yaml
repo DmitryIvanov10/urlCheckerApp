@@ -1,4 +1,4 @@
 php_info:
     path: /php_info
-    controller: App\Controller\TestController::getPhpInfo
+    controller: App\Transport\Http\Controller\TestController::getPhpInfo
     methods: GET

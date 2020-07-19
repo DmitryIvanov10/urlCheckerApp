@@ -1,5 +1,5 @@
-# nginx-php-symfony-mysql-dockerized-boilerplate
-Boilerplate for Symfony projects in docker
+# urlCheckerApp
+A test task on distributed workers
 
 ## Versions:
 **Symfony 4.4**
@@ -9,15 +9,22 @@ Boilerplate for Symfony projects in docker
 **MySQL 5.7**
 
 ## Install and run:
-1. ```git clone git@github.com:DmitryIvanov10/nginx-php-symfony-mysql-dockerized-boilerplate.git```
-2. ```cd nginx-php-symfony-mysql-dockerized-boilerplate```
+1. ```git clone git@github.com:DmitryIvanov10/urlCheckerApp.git```
+2. ```cd urlCheckerApp```
 3. ```docker-compose up --build -d```
-3. ```docker exec -it php sh```
-4. Inside php container: ```composer update``` and ```composer install```
-5. Add ```127.0.0.1 app.local``` to `/etc/hosts`
-6. Check if everything works and get `phpinfo()` at `app.local:81/php_info`
+3. Install composer, migrate DB, load fixtures ```docker exec -d php make fresh```
+4. Add ```127.0.0.1 app.local``` to `/etc/hosts`
+5. Check if everything works and get `phpinfo()` at `app.local:81/php_info`
+
+## Create new line for the URL to check
+1. Get inside the container: ```docker exec -it php sh```
+2. Run command ```php bin/console app:url-check:create some.url``` (change the URL argument)
+
+## Adding messages to check URLs to the queue and handling them asynchronously
+1. Get into the PHP container ```docker exec -it php sh```
+2. Create and dispatch messages ```bin/console app:url-check:run```
+3. Consume messages and actually handle them ```php bin/console messenger:consume async```
 
 ## Important
-This build doesn't contain doctrine 
 Composer can be updated inside the **php** container
 All migrations should be run inside the **php** container
