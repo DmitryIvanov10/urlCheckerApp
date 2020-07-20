@@ -14,6 +14,11 @@ RUN apk --update add wget \
 # add php mysql extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+RUN chown -R www-data:www-data /var/www/html
+RUN apk update && \
+    apk add --no-cache --virtual dev-deps git autoconf gcc g++ make && \
+    apk add --no-cache zlib-dev libzip-dev libmemcached-dev icu-dev bash
+
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/local/bin/ \

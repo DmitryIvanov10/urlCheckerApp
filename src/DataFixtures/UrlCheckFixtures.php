@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Resources\DataFixtures;
+namespace App\DataFixtures;
 
 use App\Domain\Exception\BadArgumentException;
 use App\Domain\Factory\UrlCheckFactory;

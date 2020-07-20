@@ -2,7 +2,6 @@ App\Domain\UrlCheck:
   properties:
     url:
     - Url:
-        relativeProtocol: true
         message: The url "{{ value }}" is not a valid url.
     - NotBlank:
         message: The url cannot be blank or empty.
